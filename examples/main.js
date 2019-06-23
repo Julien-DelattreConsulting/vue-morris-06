@@ -5,7 +5,7 @@ global.Raphael = Raphael
 import Vue from 'vue'
 import { DonutChart, BarChart, LineChart, AreaChart } from '../dist/vue-morris.min.js'
 
-const COLORS = [ '#42B8E0', '#33658A', '#F6AE2D', '#F26419', '#0E3A53' ]
+const COLORS = ['#42B8E0', '#33658A', '#F6AE2D', '#F26419', '#0E3A53']
 
 new Vue({
   el: '#app',
@@ -19,16 +19,16 @@ new Vue({
 
     areaData: [],
 
-    series: [ 'a', 'b' ],
-    labels: [ 'Serie A', 'Serie B' ],
-    lineColors: [ COLORS[0], COLORS[1] ],
+    series: ['a', 'b'],
+    labels: ['Serie A', 'Serie B'],
+    lineColors: [COLORS[0], COLORS[1]],
   },
 
   components: {
     DonutChart, BarChart, LineChart, AreaChart
   },
 
-  mounted () {
+  mounted() {
     setInterval(() => {
 
       this.donutData = [
@@ -59,9 +59,9 @@ new Vue({
       this.labels = []
       this.lineColors = []
       for (let i = 0; i < this.rand(4) + 1; i++) {
-          this.series.push(String.fromCharCode(i + 97))
-          this.labels.push('Serie ' + String.fromCharCode(i + 65))
-          this.lineColors.push(COLORS[i])
+        this.series.push(String.fromCharCode(i + 97))
+        this.labels.push('Serie ' + String.fromCharCode(i + 65))
+        this.lineColors.push(COLORS[i])
       }
 
       this.lineData = []
@@ -82,7 +82,7 @@ new Vue({
         for (let serie in this.series) {
           data[this.series[serie]] = this.rand(100)
         }
-        
+
         this.lineData.push(data)
       }
 
@@ -94,20 +94,20 @@ new Vue({
         { year: '' + (this.rand(18) + 2000), a: this.rand(100), b: this.rand(100) },
         { year: '' + (this.rand(18) + 2000), a: this.rand(100), b: this.rand(100) },
       ]*/
-    }, 5000)
+    }, 30000)
   },
 
   methods: {
-    rand (limit) {
+    rand(limit) {
       return Math.ceil(Math.random() * limit)
     },
 
-    onLineHover (index, options, content, row) {
+    onLineHover(index, options, content, row) {
       // console.log('onLineHover: ', index, options, content, row)
       return content
     },
 
-    osColor (row, series, type) {
+    osColor(row, series, type) {
       //console.log(row.y, series.key)
 
       if (series.key === 'and') {
@@ -123,11 +123,11 @@ new Vue({
       return '#FFCE56'
     },
 
-    percentFormat (val) {
+    percentFormat(val) {
       return val + '%'
     },
 
-    lineColor (row, series, type) {
+    lineColor(row, series, type) {
       //console.log(row, series, type)
 
       if (type === 'point') {

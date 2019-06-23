@@ -1,29 +1,31 @@
 {
-  "name": "vue-morris",
-  "description": "Vue.js component wrapping Morris.js lib",
-  "version": "1.0.1",
-  "author": "Bruno Bonnin <bbonnin@gmail.com>",
+  "name": "vue-morris-06",
+  "description": "Vue.js component wrapping Morris.js 06 lib",
+  "version": "0.1.0",
+  "author": "Julien Delattre <julien.delattre@delattreconsulting.com>",
   "private": false,
   "keywords": [
     "vue",
     "vuejs",
-    "morris.js"
+    "morris.js",
+    "morris.js 06"
   ],
   "main": "dist/vue-morris.min.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bbonnin/vue-morris.git"
+    "url": "https://github.com/Julien-DelattreConsulting/vue-morris-06.git"
   },
-  "bugs": "https://github.com/bbonnin/vue-morris/issues",
+  "bugs": "https://github.com/Julien-DelattreConsulting/vue-morris-06/issues",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --content-base ./examples --open --inline --hot --colors --config build/webpack.dev.conf.js",
+    "dev-light": "cross-env NODE_ENV=production webpack-dev-server --content-base ./examples --open --inline --colors --config build/webpack.dev.conf.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --colors --config build/webpack.build.conf.js"
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
-    "jquery": "2.2.4",
-    "morris.js": "github:morrisjs/morris.js",
-    "raphael": "^2.2.7",
+    "morris.js": "github:pierresh/morris.js#master",
+    "raphael": "^2.2.8",
+    "regression": "2.0.1",
     "vue": "^2.1.0"
   },
   "devDependencies": {

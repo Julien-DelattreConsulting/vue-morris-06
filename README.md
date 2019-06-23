@@ -1,34 +1,21 @@
 # vue-morris
 
-> Vue.js components wrapping Morris.js lib
-> 
-> See http://morrisjs.github.io/morris.js/ for documentation
+> Vue.js components wrapping Morris.js 06 lib
+>
+> This component wraps the charts library <a href="https://pierresh.github.io/morris.js/">morris.js06</a>.
+> See https://pierresh.github.io/morris.js/ for documentation
+>
+> This is a fork of <a href="https://github.com/bbonnin/vue-morris">vue-morris</a> by bbonnin but implementing pierresh's morris 06.
 
 > Depends on Vue.js v2.1.0+
- 
+
 ## Install
 
-Use npm
-
-```bash
-npm install vue-morris --save
-```
-
-Do not forget to declare jQuery. For example, if you are using Webpack, you should have something like that in your `webpack.config.js` 
-
-```javascript
-resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.common.js',
-      'jquery': 'jquery/src/jquery.js'
-    }
-  },
-```
+Sorry, no npm available. However, you can use github link.
 
 ## Examples
-For a complete example, see files in `examples` directory or the project: https://github.com/bbonnin/vue-morris-example.
 
-* Import the component
+- Import the component
 
 ```javascript
 // Do not forget to import raphael
@@ -54,32 +41,27 @@ new Vue({
 })
 ```
 
-* Use the component in html
+- Use the component in html
+
 ```html
-<donut-chart 
-  id="donut" 
-  :data="donutData" 
-  colors='[ "#FF6384", "#36A2EB", "#FFCE56" ]' 
-  resize="true">
-</donut-chart>
+<donut-chart id="donut" :data="donutData" colors='[ "#FF6384", "#36A2EB", "#FFCE56" ]' resize="true"> </donut-chart>
 ```
 
-* Bar chart
-![bar chart](img/barchart.png)
+- Bar chart
+  ![bar chart](img/barchart.png)
 
-* Line chart
-![line chart](img/linechart.png)
+- Line chart
+  ![line chart](img/linechart.png)
 
-* Area chart
-![area chart](img/areachart.png)
+- Area chart
+  ![area chart](img/areachart.png)
 
-* Donut chart
-![donut chart](img/donutchart.png)
-
+- Donut chart
+  ![donut chart](img/donutchart.png)
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -89,6 +71,3 @@ npm run dev
 # build for production with minification
 npm run build
 ```
-
-
-

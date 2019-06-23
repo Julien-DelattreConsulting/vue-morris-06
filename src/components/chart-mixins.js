@@ -4,52 +4,57 @@ import Converter from '../util/converter'
  * All properties used by the charts with their constraints.
  */
 const Props = {
-  id: { type: String, required: true }, 
-  data: { type: [ String, Array ], required: true },
-  barColors: { type: [ String, Array, Function ], required: false },
+  id: { type: String, required: true },
+  data: { type: [String, Array], required: true },
+  barColors: { type: [String, Array, Function], required: false },
   xkey: { type: String, required: false, default: 'key' },
-  ykeys: { type: [ String, Array ], required: false, default: function _default() { return ['value']; }},
-  labels: { type: [ String, Array ], required: false, default: function _default() { return ['Value']; }},
+  ykeys: { type: [String, Array], required: false, default: function _default() { return ['value']; } },
+  labels: { type: [String, Array], required: false, default: function _default() { return ['Value']; } },
   hoverCallback: { type: Function, required: false },
-  axes: { type: [ Boolean, String ], required: false, default: true },
+  axes: { type: [Boolean, String], required: false, default: true },
   hideHover: { type: String, required: false },
-  stacked: { type: [ Boolean, String ], required: false },
-  resize: { type: [ Boolean, String ], required: false },
-  horizontal: { type: [ Boolean, String ], required: false, default: false },
-  grid: { type: [ Boolean, String ], required: false, default: true },
+  stacked: { type: [Boolean, String], required: false },
+  resize: { type: [Boolean, String], required: false },
+  horizontal: { type: [Boolean, String], required: false, default: false },
+  grid: { type: [Boolean, String], required: false, default: true },
   gridTextColor: { type: String, required: false, default: '#888' },
-  gridTextSize: { type: [ Number, String ], required: false, default: 12 },
+  gridTextSize: { type: [Number, String], required: false, default: 12 },
   gridTextFamily: { type: String, required: false, default: 'sans-serif' },
   gridTextWeight: { type: String, required: false, default: 'normal' },
 
-  colors: { type: [ String, Array ], required: false },
+  colors: { type: [String, Array], required: false },
   formatter: { type: Function, required: false },
+  donutType: { type: String, required: false, default: "donut" },
+  animate: { type: Boolean, required: false, default: true },
 
-  lineColors: { type: [ String, Array, Function ], required: false },
+  lineColors: { type: [String, Array, Function], required: false },
   xLabels: { type: String, required: false },
-  lineWidth: { type: [ Number, String ], required: false },
-  pointSize: { type: [ Number, String ], required: false },
-  pointFillColors: { type: [ String, Array ], required: false },
-  pointStrokeColors: {  type: [ String, Array ], required: false },
-  ymax: { type: String, required: false }, 
+  lineWidth: { type: [Number, String], required: false },
+  pointSize: { type: [Number, String], required: false },
+  pointFillColors: { type: [String, Array], required: false },
+  pointStrokeColors: { type: [String, Array], required: false },
+  ymax: { type: String, required: false },
   ymin: { type: String, required: false },
-  smooth: { type: [ Boolean, String ], required: false, default: true },
-  parseTime: { type: [ Boolean, String ], required: false, default: true },
+  smooth: { type: [Boolean, String], required: false, default: true },
+  parseTime: { type: [Boolean, String], required: false, default: true },
   postUnits: { type: String, required: false },
   preUnits: { type: String, required: false },
+  dataLabels: { type: Boolean, required: false, default: false },
+  dataLabelsPosition: { type: String, required: false, default: "outside" },
+  showPercentage: { type: Boolean, required: false, default: true },
   dateFormat: { type: Function, required: false },
   xLabelFormat: { type: Function, required: false },
   yLabelFormat: { type: Function, required: false },
   xLabelAngle: { type: String, required: false },
-  goals: { type: [ String, Array ], required: false },
-  goalStrokeWidth: { type: [ Number, String ], required: false },
-  goalLineColors: { type: [ String, Array ], required: false },
-  events: { type: [ String, Array ], required: false },
+  goals: { type: [String, Array], required: false },
+  goalStrokeWidth: { type: [Number, String], required: false },
+  goalLineColors: { type: [String, Array], required: false },
+  events: { type: [String, Array], required: false },
   eventStrokeWidth: { type: String, required: false },
-  eventLineColors: { type: [ String, Array ], required: false },
+  eventLineColors: { type: [String, Array], required: false },
   fillOpacity: { type: String, required: false },
 
-  behaveLikeLine: { type: [ Boolean, String ], required: false, default: false }
+  behaveLikeLine: { type: [Boolean, String], required: false, default: false }
 }
 
 /**
@@ -83,18 +88,23 @@ const BarProps = {
  * Properties of a donut chart.
  */
 const DonutProps = {
-  id: Props.id, 
+  id: Props.id,
   data: Props.data,
   colors: Props.colors,
   formatter: Props.formatter,
-  resize: Props.resize
+  resize: Props.resize,
+  donutType: Props.donutType,
+  animate: Props.animate,
+  dataLabels: Props.dataLabels,
+  dataLabelsPosition: Props.dataLabelsPosition,
+  showPercentage: Props.showPercentage
 }
 
 /**
  * Properties of a line chart.
  */
 const LineProps = {
-  id: Props.id, 
+  id: Props.id,
   data: Props.data,
   resize: Props.resize,
   lineColors: Props.lineColors,
@@ -140,22 +150,26 @@ const AreaProps = {
 }
 
 for (var prop in LineProps) {
-    if (LineProps.hasOwnProperty(prop)) {
-        AreaProps[prop] = LineProps[prop];
-    }
+  if (LineProps.hasOwnProperty(prop)) {
+    AreaProps[prop] = LineProps[prop];
+  }
 }
 
 /**
  * Common methods for all the charts.
  */
 const ChartMethods = {
-  addOption (name, options) {
+  addOption(name, options) {
+    console.log("name: " + name)
+    console.log("this name: " + this[name])
+    console.log("options")
+    console.log(options)
     if (this[name]) {
       options[name] = this[name]
     }
   },
 
-  addOptionAsObject (name, options) {
+  addOptionAsObject(name, options) {
     if (this[name]) {
       options[name] = Converter.toObject(this[name])
     }
